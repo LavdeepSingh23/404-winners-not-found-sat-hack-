@@ -1,0 +1,74 @@
+// Pin definitions for Sensor 1
+const int trigPin1 = 9; // TRIG for Sensor 1
+const int echoPin1 = 10; // ECHO for Sensor 1
+
+// Pin definitions for Sensor 2
+const int trigPin2 = 7; // TRIG for Sensor 2
+const int echoPin2 = 8; // ECHO for Sensor 2
+
+// Pin definitions for LEDs
+const int ledPin1 = 2; // LED for Spot 1
+const int ledPin2 = 3; // LED for Spot 2
+
+void setup() {
+    // Initialize Serial Monitor
+    Serial.begin(9600);
+
+    // Initialize pins for Sensor 1
+    pinMode(trigPin1, OUTPUT);
+    pinMode(echoPin1, INPUT);
+
+    // Initialize pins for Sensor 2
+    pinMode(trigPin2, OUTPUT);
+    pinMode(echoPin2, INPUT);
+
+    // Initialize pins for LEDs
+    pinMode(ledPin1, OUTPUT);
+    pinMode(ledPin2, OUTPUT);
+}
+
+// Function to measure distance using an ultrasonic sensor
+float measureDistance(int trigPin, int echoPin) {
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+
+    long duration = pulseIn(echoPin, HIGH); // Time for echo
+    float distance = duration * 0.034 / 2; // Convert time to distance in cm
+    return distance;
+}
+
+void loop() {
+    // Measure distance for Sensor 1
+    float distance1 = measureDistance(trigPin1, echoPin1);
+    Serial.print("Distance 1: ");
+    Serial.println(distance1); // Print the measured distance for debugging
+
+    // Measure distance for Sensor 2
+    float distance2 = measureDistance(trigPin2, echoPin2);
+    Serial.print("Distance 2: ");
+    Serial.println(distance2); // Print the measured distance for debugging
+
+    // Check if Spot 1 is occupied
+    if (distance1 < 20) { // Threshold distance for a car
+        Serial.println("Spot 1: Occupied");
+        digitalWrite(ledPin1, HIGH); // Turn on LED for Spot 1
+    } else {
+        Serial.println("Spot 1: Available");
+        digitalWrite(ledPin1, LOW); // Turn off LED for Spot 1
+    }
+
+    // Check if Spot 2 is occupied
+    if (distance2 < 20) {
+        Serial.println("Spot 2: Occupied");
+        digitalWrite(ledPin2, HIGH); // Turn on LED for Spot 2
+    } else {
+        Serial.println("Spot 2: Available");
+        digitalWrite(ledPin2, LOW); // Turn off LED for Spot 2
+    }
+
+    // Add a delay for readability
+    delay(1000);
+}
