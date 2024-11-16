@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Smart Parking System</h1>
+            <p>Effortless parking at your fingertips</p>
+        </div>
+    </header>
+    <main class="container">
+        <section class="status">
+            <h2>Parking Lot Status</h2>
+            <div id="parking-lot" class="grid-container">
+                <!-- Parking slots will be dynamically added here -->
+            </div>
+        </section>
+        <section class="reservation">
+            <h2>Reserve a Slot</h2>
+            <form id="reservation-form">
+                <div class="form-group">
+                    <label for="slot">Choose a Slot:</label>
+                    <select id="slot" required></select>
+                </div>
+                <button class="btn" type="submit">Reserve Now</button>
+            </form>
+            <p id="feedback"></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Smart Parking System | Designed for convenience</p>
+    </footer>
+    <script src="script.js"></script>
+    <h1>Our Location</h1>
+    <p>Find us on Google Maps below:</p>
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0217821168727!2d-122.08424948468195!3d37.422065879825716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb24d0e6d89e1%3A0x520af6f9adfb540!2sGoogleplex!5e0!3m2!1sen!2sus!4v1638377762282!5m2!1sen!2sus" 
+        width="600" 
+        height="450" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy">
+    </iframe>
+</body>
+</html>
